@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>HelperStartup — AI-помощник для бизнеса</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; background: #0f172a; color: #e5e7eb; }
+    header { padding: 24px; text-align: center; }
+    header h1 { margin: 0; font-size: 32px; }
+    header p { color: #94a3b8; }
+
+    main { max-width: 900px; margin: auto; padding: 24px; }
+
+    .card {
+      background: #020617;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    label { display: block; margin-top: 16px; margin-bottom: 6px; color: #cbd5f5; }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #020617;
+      color: #e5e7eb;
+      outline: 1px solid #1e293b;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    .result {
+      white-space: pre-line;
+      margin-top: 12px;
+      padding: 16px;
+      background: #020617;
+      border-radius: 8px;
+      outline: 1px solid #1e293b;
+      min-height: 120px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>HelperStartup</h1>
+  <p>AI-помощник для стартапов и онлайн-магазинов</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Генерация текста</h2>
+
+    <label>Название продукта</label>
+    <input id="name" placeholder="Например: SmartWatch Pro">
+
+    <label>Категория</label>
+    <input id="category" placeholder="Электроника, сервис, приложение">
+
+    <label>Ключевые особенности</label>
+    <textarea id="features" placeholder="Быстрый, надёжный, стильный"></textarea>
+
+    <label>Тип текста</label>
+    <select id="type">
+      <option>Описание товара</option>
+      <option>Слоган</option>
+      <option>Текст для сайта</option>
+    </select>
+
+    <label>Тон</label>
+    <select id="tone">
+      <option>Продающий</option>
+      <option>Деловой</option>
+      <option>Дружелюбный</option>
+    </select>
+
+    <button onclick="generateText()">Сгенерировать</button>
+  </div>
+
+  <div class="card">
+    <h2>Результат</h2>
+    <div class="result" id="output">
+      Здесь появится сгенерированный текст…
+    </div>
+  </div>
+</main>
+
+<footer>
+  © HelperStartup — AI для бизнеса
+</footer>
+
+<script>
+function generateText() {
+  const name = document.getElementById("name").value;
+  const category = document.getElementById("category").value;
+  const features = document.getElementById("features").value;
+  const type = document.getElementById("type").value;
+  const tone = document.getElementById("tone").value;
+
+  if (!name || !category || !features) {
+    alert("Заполни все поля");
+    return;
+  }
+
+  const text =
+`[${type} | ${tone}]
+
+${name} — это современный продукт в категории "${category}",
+который выделяется следующими преимуществами:
+${features}
+
+Идеально подходит для клиентов, которые ценят качество и эффективность.`;
+
+  document.getElementById("output").innerText = text;
+}
+</script>
+
+</body>
+</html>
